@@ -30,8 +30,6 @@ const update = (id) => {
         }
     });
 }
-
-
 </script>
 <template>
     <EditModal
@@ -59,8 +57,7 @@ const update = (id) => {
                             v-model="model.description"
                             :onError="form.errors.description"
                             required
-                        />
-                        
+                        />    
                     </div>
                 </form>
             </div>

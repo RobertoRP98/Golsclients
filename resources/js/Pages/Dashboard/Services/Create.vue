@@ -63,7 +63,6 @@ const submit = () => form.post(route(goTo('store')), {
                 autofocus
                 required
             />
-           
             <div class="col-span-6 flex flex-col items-center justify-end space-y-4 mt-4">
                 <PrimaryButton
                     :class="{ 'opacity-25': form.processing }" 

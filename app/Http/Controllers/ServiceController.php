@@ -16,41 +16,49 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Traits\UseFetch;
 use Notsoweb\Core\Http\Traits\Controllers\WithPermission;
 
-
-
-
-
-
 /**
  * Descripción
  * 
- * @author Moisés de Jesús Cortés Castellanos <ing.moisesdejesuscortesc@notsoweb.com>
+ * @author Roberto Romero Pérez <robertorpsistemas@gmail.com>
  * 
  * @version 1.0.0
  */
 class ServiceController extends VueController
 {
-
     use UseFetch,
         WithPermission;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->vueRoot('admin.user');
         $this->withDefaultPermissions('users');
     }
 
+    /**
+     * Listar servicios
+     */
     public function index()
     {
         $services = Service::paginate(config('app.pagination'));
         return Inertia::render('Dashboard/Services/Index', ['services' => $services]);
     }
 
+    /**
+     * Formulario para crear un servicio
+     */
     public function create()
     {
         return Inertia::render('Dashboard/Services/Create');
     }
 
+    /**
+     * Almacenar un servicio
+     * Se creo el StoreService a traves del request
+     * en ese request estan los campos obligatorios 
+     */
     public function store(StoreService $request)
     {
         $data = $request->all();
@@ -58,16 +66,11 @@ class ServiceController extends VueController
         return $this->index();
     }
 
-    public function show($id)
-    {
-        // ...
-    }
-
-    public function edit($id)
-    {
-        // ...
-    }
-
+    /**
+     * Actualizar un servicio
+     * Se creo el UpdateService a traves del request
+     * en ese request estan los campos obligatorios 
+     */
     public function update(UpdateService $request, $service): void
     {
         $data = $request->all();
@@ -75,6 +78,10 @@ class ServiceController extends VueController
         $model->update($data);
     }
 
+    /**
+     * Eliminar un servicio
+     * la variable $service almacena el ID del servicio
+     */
     public function destroy($service): void
     {
         try {

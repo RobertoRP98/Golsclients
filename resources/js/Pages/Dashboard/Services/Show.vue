@@ -34,7 +34,6 @@ defineProps({
                     name="home_repair_service"
                 />
                 <div class="pl-3">
-                    
                     <p>
                         <b>{{ $t('Servicio') }}: </b>
                         <a :href="`name:${model.name}`" target="_blank" class="hover:text-danger">

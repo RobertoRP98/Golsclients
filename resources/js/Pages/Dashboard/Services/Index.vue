@@ -1,5 +1,5 @@
 <script setup>
-import { transl, can, goTo } from './Component'
+import { transl, can, goTo } from './Component' //goTO tiene las rutas que toman los modales
 import { ref } from 'vue';
 import { Link  } from '@inertiajs/vue3';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
@@ -12,7 +12,7 @@ import EditView        from './Edit.vue';
 import ShowView        from './Show.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 
-
+//este props trae la informacion de los servicios
 const props = defineProps({
     services: Object
 });
@@ -86,7 +86,6 @@ const query        = ref(Searcher.query);
                             </div>
                           </div>
                         </td>
-                        
                         <td class="table-item border">
                             <div class="flex justify-center space-x-2">
                                 <GoogleIcon
@@ -112,7 +111,7 @@ const query        = ref(Searcher.query);
                                     outline
                                     @click="Modal.switchDestroyModal(model)"
                                 />
-                                                            </div>
+                            </div>
                         </td>
                     </tr>
                 </template>

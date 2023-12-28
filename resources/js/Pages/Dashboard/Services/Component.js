@@ -1,7 +1,7 @@
 import { t } from '@/Lang/i18n';
 import { hasPermission } from '@/rolePermission.js';
 
-// Obtener ruta
+// Obtener ruta que fue modificada a services
 const goTo = (route) => `dashboard.services.${route}`
 // Obtener traducción del componente
 const transl = (lang) => t(`services.${lang}`)
