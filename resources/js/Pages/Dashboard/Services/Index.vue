@@ -112,17 +112,7 @@ const query        = ref(Searcher.query);
                                     outline
                                     @click="Modal.switchDestroyModal(model)"
                                 />
-                                <Link
-                                    v-if="can('config')"
-                                    :href="route(goTo('settings'), model.id)"
-                                >
-                                    <GoogleIcon
-                                        :title="$t('setting')"
-                                        class="btn-icon-primary"
-                                        name="settings"
-                                    />
-                                </Link>
-                            </div>
+                                                            </div>
                         </td>
                     </tr>
                 </template>

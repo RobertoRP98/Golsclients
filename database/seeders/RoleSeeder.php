@@ -1,4 +1,7 @@
-<?php namespace Database\Seeders;
+<?php
+
+namespace Database\Seeders;
+
 /**
  * @copyright Copyright (c) 2023 Notsoweb (https://notsoweb.com) - All rights reserved.
  */
@@ -48,6 +51,17 @@ class RoleSeeder extends Seeder
 
             $usersConfig = $this->onPermission('users.config', 'Usuarios: Configuraciones adicionales');
 
+            // Permisos para los servicios
+            [
+                $servicesIndex,
+                $servicesCreate,
+                $servicesEdit,
+                $servicesDestroy
+            ] = $this->onCRUD('services', 'Servicios:');
+
+
+
+
             /**
              * Roles con asignación de permisos
              */
@@ -67,17 +81,23 @@ class RoleSeeder extends Seeder
                 $usersIndex,
                 $usersCreate,
                 $usersEdit,
-                $usersDestroy
+                $usersDestroy,
+                $servicesIndex,
+                $servicesCreate,
+                $servicesEdit,
+                $servicesDestroy,
             );
 
-             // Role de supervisor (solo lectura)
-             Role::create([
+            // Role de supervisor (solo lectura)
+            Role::create([
                 'name' => 'supervisor',
                 'description' => 'Supervisor: Solo lectura'
             ])->givePermissionTo(
                 $historiesIndex,
                 $rolesIndex,
                 $usersIndex,
+                $servicesIndex,
+
             );
         });
     }

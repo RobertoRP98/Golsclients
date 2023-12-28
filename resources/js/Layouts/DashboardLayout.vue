@@ -91,6 +91,19 @@ onMounted(()=> {
                         to="developer.roles.index"
                     />
                 </Section>
+
+
+                <Section
+                    v-if="hasPermission('services.index')"
+                    name="Ventas"
+                >
+                    <Link
+                        v-if="hasPermission('services.index')"
+                        icon="home_repair_service"
+                        name="services.title"
+                        to="dashboard.services.index"
+                    />
+                </Section>
             </Sidebar>
         </div>
         <div 

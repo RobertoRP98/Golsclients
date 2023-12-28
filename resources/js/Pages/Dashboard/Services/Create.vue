@@ -15,11 +15,8 @@ defineProps({
 
 const form = useForm({
     name: '',
-    paternal: '',
-    maternal: '',
-    email: '',
-    phone: '',
-    password: ''
+    description: '',
+   
 });
 
 const submit = () => form.post(route(goTo('store')), {
@@ -59,46 +56,14 @@ const submit = () => form.post(route(goTo('store')), {
                 required
             />
             <Input
-                id="paternal"
+                id="description"
                 class="col-span-2"
-                v-model="form.paternal"
-                :onError="form.errors.paternal"
+                v-model="form.description"
+                :onError="form.errors.description"
                 autofocus
                 required
             />
-            <Input
-                id="maternal"
-                class="col-span-2"
-                v-model="form.maternal"
-                :onError="form.errors.maternal"
-                autofocus
-            />
-            <Input
-                id="phone"
-                class="col-span-2"
-                v-model="form.phone"
-                :onError="form.errors.phone"
-                type="number"
-                autofocus
-                required
-            />
-            <Input
-                id="email.title"
-                type="email"
-                class="col-span-2"
-                v-model="form.email"
-                :onError="form.errors.email"
-                autofocus
-                required
-            />
-            <Input
-                id="password"
-                type="password"
-                class="col-span-2"
-                v-model="form.password"
-                :onError="form.errors.password"
-                required
-            />
+           
             <div class="col-span-6 flex flex-col items-center justify-end space-y-4 mt-4">
                 <PrimaryButton
                     :class="{ 'opacity-25': form.processing }" 

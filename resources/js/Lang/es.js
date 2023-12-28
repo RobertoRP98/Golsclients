@@ -224,5 +224,23 @@ export default {
         system:'Usuarios del sistema',
         title:'Usuarios',
     },
+
+
+    services:{
+        create:{
+            title:'Crear Servicio',
+            description:'Permite crear nuevos servicios.',
+            onSuccess:'Servicio creado',
+            onError:'Ocurrió un error al crear el Servicio'
+        },
+        deleted:'Servicio eliminado',
+        notFount:'Servicio no encontrado',
+
+        menu:'Menú de servicio',
+        select:'Seleccionar un servicio',
+        settings:'Ajustes del servicio',
+        system:'Servicios',
+        title:'Servicios',
+    },
     version:'Versión',
 }

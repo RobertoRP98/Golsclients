@@ -25,29 +25,26 @@ defineProps({
     >
         <Header
             :title="model.name"
-            :subtitle="model.full_last_name"
         >
         </Header>
         <div class="py-2 border-b">
             <div class="px-4 py-2 flex">
                 <GoogleIcon 
                     class="text-xl text-success"
-                    name="contact_mail"
+                    name="home_repair_service"
                 />
                 <div class="pl-3">
-                    <p class="font-bold text-lg leading-none pb-2">
-                        {{ $t('contact') }}
-                    </p>
+                    
                     <p>
-                        <b>{{ $t('phone') }}: </b>
-                        <a :href="`tel:${model.phone}`" target="_blank" class="hover:text-danger">
-                            {{ model.phone }}
+                        <b>{{ $t('Servicio') }}: </b>
+                        <a :href="`name:${model.name}`" target="_blank" class="hover:text-danger">
+                            {{ model.name }}
                         </a>
                     </p>
                     <p>
-                        <b>{{ $t('email') }}: </b>
-                        <a :href="`mailto:${model.email}`" target="_blank" class="hover:text-danger">
-                            {{ model.email }}
+                        <b>{{ $t('description') }}: </b>
+                        <a :href="`description:${model.description}`" target="_blank" class="hover:text-danger">
+                            {{ model.description }}
                         </a>
                     </p>
                 </div>

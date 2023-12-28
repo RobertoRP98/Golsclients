@@ -13,6 +13,10 @@ use Notsoweb\Core\Http\Controllers\VueController;
 use App\Models\Service;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use App\Http\Traits\UseFetch;
+use Notsoweb\Core\Http\Traits\Controllers\WithPermission;
+
+
 
 
 
@@ -26,6 +30,16 @@ use Illuminate\Support\Facades\Log;
  */
 class ServiceController extends VueController
 {
+
+    use UseFetch,
+        WithPermission;
+
+    public function __construct()
+    {
+        $this->vueRoot('admin.user');
+        $this->withDefaultPermissions('users');
+    }
+
     public function index()
     {
         $services = Service::paginate(config('app.pagination'));
@@ -34,7 +48,7 @@ class ServiceController extends VueController
 
     public function create()
     {
-        return $this->vuew('create');
+        return Inertia::render('Dashboard/Services/Create');
     }
 
     public function store(StoreService $request)

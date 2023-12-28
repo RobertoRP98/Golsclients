@@ -55,30 +55,12 @@ const update = (id) => {
                             required
                         />
                         <Input
-                            id="paternal"
-                            v-model="model.paternal"
-                            :onError="form.errors.paternal"
+                            id="description"
+                            v-model="model.description"
+                            :onError="form.errors.description"
                             required
                         />
-                        <Input
-                            id="maternal"
-                            v-model="model.maternal"
-                            :onError="form.errors.maternal"
-                            required
-                        />
-                        <Input
-                            id="email.title"
-                            type="email"
-                            v-model="model.email"
-                            :onError="form.errors.email"
-                        />
-                        <Input
-                            id="phone"
-                            type="number"
-                            v-model="model.phone"
-                            :onError="form.errors.phone"
-                            maxlength="10"
-                        />
+                        
                     </div>
                 </form>
             </div>
