@@ -12,10 +12,10 @@ use Illuminate\Foundation\Http\FormRequest;
  * Descripción
  * 
  * @author Roberto Romero Pérez <robertorpsistemas@gmail.com>
- * 
+ *  
  * @version 1.0.0
  */
-class StoreService extends FormRequest
+class StorePlan extends FormRequest
 {
     /**
      * Determinar si el usuario esta autorizado
@@ -36,7 +36,7 @@ class StoreService extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'description' => ['required', 'string'],
+            'price' => ['required', 'double']
         ];
     }
 }

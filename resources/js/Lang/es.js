@@ -224,6 +224,7 @@ export default {
         system:'Usuarios del sistema',
         title:'Usuarios',
     },
+    service:'Servicio',
     services:{
         create:{
             title:'Crear Servicio',
@@ -239,6 +240,8 @@ export default {
         settings:'Ajustes del servicio',
         system:'Servicios',
         title:'Servicios',
+        
+        
     },
     version:'Versión',
 }

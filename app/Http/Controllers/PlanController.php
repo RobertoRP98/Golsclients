@@ -6,15 +6,18 @@ namespace App\Http\Controllers;
  * @copyright Copyright (c) 2023 Notsoweb (https://notsoweb.com) - All rights reserved.
  */
 
-use App\Http\Requests\StoreService;
-use App\Http\Requests\UpdateService;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePlan;
+use App\Http\Requests\UpdatePlan;
 use Notsoweb\Core\Http\Controllers\VueController;
-use App\Models\Service;
+use App\Models\Plan;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Log;
 use App\Http\Traits\UseFetch;
 use Notsoweb\Core\Http\Traits\Controllers\WithPermission;
+use Illuminate\Support\Facades\Log;
+
+
+
 
 /**
  * Descripción
@@ -23,7 +26,7 @@ use Notsoweb\Core\Http\Traits\Controllers\WithPermission;
  * 
  * @version 1.0.0
  */
-class ServiceController extends VueController
+class PlanController extends VueController
 {
     use UseFetch,
         WithPermission;
@@ -33,18 +36,18 @@ class ServiceController extends VueController
      */
     public function __construct()
     {
-        $this->vueRoot('admin.user');
-        $this->withDefaultPermissions('users');
+        $this->vueRoot('dashboard.service.index');
+        $this->withDefaultPermissions('services');
     }
 
     /**
-     * Listar servicios, q responde a al buscador
+     * Listar planes y $q responde al buscador
      */
     public function index()
     {
         $q = request()->get('q');
         return Inertia::render('Dashboard/Services/Index', [
-            'services' => Service::where(fn ($query) => $query
+            'services' => Plan::where(fn ($query) => $query
                 ->where('name', 'LIKE', "%{$q}%")
                 ->orWhere('description', 'LIKE', "%{$q}%"))
                 ->select([
@@ -57,48 +60,48 @@ class ServiceController extends VueController
     }
 
     /**
-     * Formulario para crear un servicio
+     * Formulario para crear un plan
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Services/Create');
+        return Inertia::render('Dashboard/Plans/Create');
     }
 
     /**
-     * Almacenar un servicio
-     * Se creo el StoreService a traves del request
+     * Almacenar un plan
+     * Se creo el StorePlan a traves del request
      * en ese request estan los campos obligatorios 
      */
-    public function store(StoreService $request)
+    public function store(StorePlan $request)
     {
         $data = $request->all();
-        Service::create($data);
+        Plan::create($data);
         return $this->index();
     }
 
     /**
-     * Actualizar un servicio
-     * Se creo el UpdateService a traves del request
+     * Actualizar un plan
+     * Se creo el UpdatePlan a traves del request
      * en ese request estan los campos obligatorios 
      */
-    public function update(UpdateService $request, $service): void
+    public function update(UpdatePlan $request, $plan): void
     {
         $data = $request->all();
-        $model = Service::find($service);
+        $model = Plan::find($plan);
         $model->update($data);
     }
 
     /**
-     * Eliminar un servicio
-     * la variable $service almacena el ID del servicio
+     * Eliminar un plan
+     * la variable $plan almacena el ID del plan
      */
-    public function destroy($service): void
+    public function destroy($plan): void
     {
         try {
-            $service = Service::find($service);
-            $service->delete();
+            $plan = Plan::find($plan);
+            $plan->delete();
         } catch (\Throwable $th) {
-            Log::channel('services')
+            Log::channel('plans')
                 ->error($th->getMessage());
         }
     }

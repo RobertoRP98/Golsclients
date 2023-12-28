@@ -15,9 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @author Roberto Romero Pérez <robertorpsistemas@gmail.com>
  * 
+ * 
  * @version 1.0.0
  */
-class Service extends Model
+class Plan extends Model
 {
     use HasFactory,
         ModelExtend;
@@ -25,15 +26,13 @@ class Service extends Model
     /**
      * Atributos llenables masivamente
      */
-    protected $fillable = [
-        'name', 'description'
-    ];
+    protected $fillable = ['name', 'price', 'service_id'];
 
     /**
-     * Se crea la relacion de un servicio con los planes
+     * Relacion inversa para obtener el dia de servicio
      */
-    public function plans()
+    public function service()
     {
-        return $this->hasMany(Plan::class);
+        return $this->belonsTo(Service::class);
     }
 }
