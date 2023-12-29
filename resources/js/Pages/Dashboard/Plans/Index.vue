@@ -14,7 +14,8 @@ import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 
 //este props trae la informacion de los planes
 const props = defineProps({
-    plans: Object
+    plans: Object,
+    services: object
 });
 
 // Controladores
