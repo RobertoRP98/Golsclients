@@ -36,8 +36,8 @@ class PlanController extends VueController
      */
     public function __construct()
     {
-        $this->vueRoot('dashboard.service.index');
-        $this->withDefaultPermissions('services');
+        $this->vueRoot('dashboard.plan.index');
+        $this->withDefaultPermissions('plans');
     }
 
     /**
@@ -46,14 +46,14 @@ class PlanController extends VueController
     public function index()
     {
         $q = request()->get('q');
-        return Inertia::render('Dashboard/Services/Index', [
-            'services' => Plan::where(fn ($query) => $query
+        return Inertia::render('Dashboard/Plans/Index', [
+            'plans' => Plan::where(fn ($query) => $query
                 ->where('name', 'LIKE', "%{$q}%")
-                ->orWhere('description', 'LIKE', "%{$q}%"))
+                ->orWhere('price', 'LIKE', "%{$q}%"))
                 ->select([
                     'id',
                     'name',
-                    'description',
+                    'price',
                 ])
                 ->paginate(config('app.pagination')),
         ]);

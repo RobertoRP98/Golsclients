@@ -34,7 +34,7 @@ class UpdatePlan extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'price' => ['required', 'double']
+            'price' => ['required', 'numeric']
         ];
     }
 }

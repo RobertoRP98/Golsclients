@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Developer\RoleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Example\IndexController as ExampleIndexController;
+use App\Http\Controllers\PlanController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -30,6 +31,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     Route::inertia('/changelogs', 'Dashboard/Changelogs')->name('changelogs');
     Route::inertia('/help', 'Dashboard/Help')->name('help');
     Route::resource('services', ServiceController::class);
+    Route::resource('plans', PlanController::class);
+
 
 
     # Log de Acciones

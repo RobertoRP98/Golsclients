@@ -243,5 +243,25 @@ export default {
         
         
     },
+    plan:'Plan',
+    price:'Precio',
+    plans:{
+        create:{
+            title:'Crear Plan',
+            description:'Permite crear nuevos planes.',
+            onSuccess:'Plan creado',
+            onError:'Ocurrió un error al crear el Plan'
+        },
+        deleted:'Plan eliminado',
+        notFount:'Plan no encontrado',
+
+        menu:'Menú de planes',
+        select:'Seleccionar un plan',
+        settings:'Ajustes del plan',
+        system:'Planes',
+        title:'Planes',
+        
+        
+    },
     version:'Versión',
 }

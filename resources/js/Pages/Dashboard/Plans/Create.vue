@@ -10,17 +10,13 @@ import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
 const form = useForm({
     name: '',
-    paternal: '',
-    maternal: '',
-    email: '',
-    phone: '',
-    password: ''
+    price: '',
+   
 });
 
 const submit = () => form.post(route(goTo('store')), {
     onSuccess: () => Notify.success(transl('create.onSuccess')),
     onError:   () => Notify.error(transl('create.onError')),
-    onFinish:  () => form.reset('password')
 });
 </script>
 
@@ -54,44 +50,11 @@ const submit = () => form.post(route(goTo('store')), {
                 required
             />
             <Input
-                id="paternal"
+                id="price"
                 class="col-span-2"
-                v-model="form.paternal"
-                :onError="form.errors.paternal"
+                v-model="form.price"
+                :onError="form.errors.price"
                 autofocus
-                required
-            />
-            <Input
-                id="maternal"
-                class="col-span-2"
-                v-model="form.maternal"
-                :onError="form.errors.maternal"
-                autofocus
-            />
-            <Input
-                id="phone"
-                class="col-span-2"
-                v-model="form.phone"
-                :onError="form.errors.phone"
-                type="number"
-                autofocus
-                required
-            />
-            <Input
-                id="email.title"
-                type="email"
-                class="col-span-2"
-                v-model="form.email"
-                :onError="form.errors.email"
-                autofocus
-                required
-            />
-            <Input
-                id="password"
-                type="password"
-                class="col-span-2"
-                v-model="form.password"
-                :onError="form.errors.password"
                 required
             />
             <div class="col-span-6 flex flex-col items-center justify-end space-y-4 mt-4">

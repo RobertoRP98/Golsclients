@@ -8,11 +8,6 @@ import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
-defineProps({
-    password: String,
-    users: String
-});
-
 const form = useForm({
     name: '',
     description: '',

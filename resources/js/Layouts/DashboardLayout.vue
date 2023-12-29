@@ -103,6 +103,12 @@ onMounted(()=> {
                         name="services.title"
                         to="dashboard.services.index"
                     />
+                    <Link
+                        v-if="hasPermission('plans.index')"
+                        icon="checklist"
+                        name="plans.title"
+                        to="dashboard.plans.index"
+                    />
                 </Section>
             </Sidebar>
         </div>

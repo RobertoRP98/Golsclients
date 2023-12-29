@@ -60,7 +60,15 @@ class RoleSeeder extends Seeder
             ] = $this->onCRUD('services', 'Servicios:');
 
 
+            // Permisos para los planes
+            [
+                $plansIndex,
+                $plansCreate,
+                $plansEdit,
+                $plansDestroy
+            ] = $this->onCRUD('plans', 'Planes:');
 
+            //corer  php artisan migrate:refresh --seed al crear mas permisos
 
             /**
              * Roles con asignación de permisos
@@ -86,6 +94,10 @@ class RoleSeeder extends Seeder
                 $servicesCreate,
                 $servicesEdit,
                 $servicesDestroy,
+                $plansIndex,
+                $plansCreate,
+                $plansEdit,
+                $plansDestroy,
             );
 
             // Role de supervisor (solo lectura)
@@ -97,7 +109,7 @@ class RoleSeeder extends Seeder
                 $rolesIndex,
                 $usersIndex,
                 $servicesIndex,
-
+                $plansIndex,
             );
         });
     }

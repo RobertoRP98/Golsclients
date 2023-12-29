@@ -12,15 +12,14 @@ import EditView        from './Edit.vue';
 import ShowView        from './Show.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 
-//este props trae la informacion de los servicios
+//este props trae la informacion de los planes
 const props = defineProps({
-    services: Object
+    plans: Object
 });
 
 // Controladores
 const Modal    = new ModalController();
 const Searcher = new SearcherController(goTo('index'));
-
 
 // Variables de controladores
 const destroyModal = ref(Modal.destroyModal);
@@ -48,17 +47,17 @@ const query        = ref(Searcher.query);
         </SearcherHead>
         <div class="pt-2 w-full">
             <Table 
-                :items="services"
+                :items="plans"
                 @send-pagination="Searcher.searchWithPagination"
             >
                 <template #head>
                     <th
                         class="table-item"
-                        v-text="$t('service')"
+                        v-text="$t('plan')"
                     />
                     <th
                         class="table-item"
-                        v-text="$t('description')"
+                        v-text="$t('price')"
                     />
                     <th
                         class="table-item w-44"
@@ -80,7 +79,7 @@ const query        = ref(Searcher.query);
                           <div class="flex items-center text-sm">
                             <div class="text-left">
                               <p class="font-semibold">
-                                {{ model.description }}
+                                {{ model.price }}
                               </p>
                             </div>
                           </div>
