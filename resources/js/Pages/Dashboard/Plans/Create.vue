@@ -56,7 +56,7 @@ const submit = () => form.transform(data => ({
     <div class="w-full">
         <form @submit.prevent="submit" class="grid gap-4 grid-cols-6">
             <div class="col-span-2">
-                <!-- Para el selectable pasamos el vmodel declarado arriba en props-->
+                <!-- Para el selectable pasamos el vmodel declarado arriba en props -->
             <Selectable 
             title="Servicios"
             v-model="service"
