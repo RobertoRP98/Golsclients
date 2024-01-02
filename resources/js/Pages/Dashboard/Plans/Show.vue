@@ -35,13 +35,13 @@ defineProps({
                 />
                 <div class="pl-3">
                     <p>
-                        <b>{{ $t('Servicio') }}: </b>
+                        <b>{{ $t('Plan') }}: </b>
                         <a :href="`name:${model.name}`" target="_blank" class="hover:text-danger">
                             {{ model.name }}
                         </a>
                     </p>
                     <p>
-                        <b>{{ $t('description') }}: </b>
+                        <b>{{ $t('Precio') }}: </b>
                         <a :href="`description:${model.price}`" target="_blank" class="hover:text-danger">
                             {{ model.price }}
                         </a>

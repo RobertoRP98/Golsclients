@@ -1,4 +1,7 @@
-<?php namespace App\Models;
+<?php
+
+namespace App\Models;
+
 /**
  * @copyright Copyright (c) 2023 Notsoweb (https://notsoweb.com) - All rights reserved.
  */
@@ -92,7 +95,7 @@ class User extends Authenticatable
         return "{$this->name} {$this->paternal} {$this->maternal}";
     }
 
-     /**
+    /**
      * Retornar apellido completo
      */
     public function getFullLastNameAttribute()

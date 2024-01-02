@@ -36,7 +36,9 @@ class StorePlan extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'price' => ['required', 'numeric']
+            'price' => ['required', 'numeric'],
+            'service_id' => ['required', 'numeric'],
+
         ];
     }
 }

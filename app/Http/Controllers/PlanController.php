@@ -11,13 +11,11 @@ use App\Http\Requests\StorePlan;
 use App\Http\Requests\UpdatePlan;
 use Notsoweb\Core\Http\Controllers\VueController;
 use App\Models\Plan;
+use App\Models\Service;
 use Inertia\Inertia;
 use App\Http\Traits\UseFetch;
 use Notsoweb\Core\Http\Traits\Controllers\WithPermission;
 use Illuminate\Support\Facades\Log;
-
-
-
 
 /**
  * Descripción
@@ -46,17 +44,28 @@ class PlanController extends VueController
     public function index()
     {
         $q = request()->get('q');
-        return Inertia::render('Dashboard/Plans/Index', [
-            'plans' => Plan::where(fn ($query) => $query
-                ->where('name', 'LIKE', "%{$q}%")
-                ->orWhere('price', 'LIKE', "%{$q}%"))
-                ->select([
-                    'id',
-                    'name',
-                    'price',
-                ])
-                ->paginate(config('app.pagination')),
-        ]);
+
+        $plans = Plan::with(['service:id,name'])
+            ->where(function ($query) use ($q) {
+                $query->where('name', 'LIKE', "%{$q}%")
+                    ->orWhere('price', 'LIKE', "%{$q}%")
+                    ->orWhereHas('service', function ($subquery) use ($q) {
+                        $subquery->where('name', 'LIKE', "%{$q}%");
+                    });
+            })
+            ->select([
+                'id',
+                'name',
+                'price',
+                'service_id'
+            ])
+            ->paginate(config('app.pagination'));
+
+        /** Se envia la vista del index añadiendo los planes  */
+        return Inertia::render(
+            'Dashboard/Plans/Index',
+            ['plans' => $plans]
+        );
     }
 
     /**
@@ -64,7 +73,7 @@ class PlanController extends VueController
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Plans/Create');
+        return Inertia::render('Dashboard/Plans/Create', ['services' => Service::get()]);
     }
 
     /**
@@ -75,6 +84,7 @@ class PlanController extends VueController
     public function store(StorePlan $request)
     {
         $data = $request->all();
+        // $data['service_id'] = $data['service_id']['id'];
         Plan::create($data);
         return $this->index();
     }

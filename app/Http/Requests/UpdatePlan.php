@@ -33,6 +33,7 @@ class UpdatePlan extends FormRequest
     public function rules()
     {
         return [
+            'service_id' => ['required', 'numeric'],
             'name' => ['required', 'string'],
             'price' => ['required', 'numeric']
         ];

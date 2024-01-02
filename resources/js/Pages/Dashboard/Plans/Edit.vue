@@ -37,9 +37,9 @@ const update = (id) => {
         @close="$emit('close')"
         @update="update(model.id)" 
     >
-        <Header
-            :title="model.name"
-        />
+
+    <Header :title="'Estás modificando el plan ' + model.name + ' del servicio '+ model.service?.name " />
+
         <div class="py-2 border-b">
             <div class="p-4">
                 <form>

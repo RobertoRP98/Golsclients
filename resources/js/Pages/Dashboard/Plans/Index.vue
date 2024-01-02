@@ -15,7 +15,6 @@ import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 //este props trae la informacion de los planes
 const props = defineProps({
     plans: Object,
-    services: object
 });
 
 // Controladores
@@ -47,11 +46,17 @@ const query        = ref(Searcher.query);
             </Link>
         </SearcherHead>
         <div class="pt-2 w-full">
+
+            <!--{{plans}} -->
             <Table 
                 :items="plans"
                 @send-pagination="Searcher.searchWithPagination"
             >
                 <template #head>
+                    <th 
+                    class="table-item"
+                    v-text="$t('service')"
+                    />
                     <th
                         class="table-item"
                         v-text="$t('plan')"
@@ -67,6 +72,15 @@ const query        = ref(Searcher.query);
                 </template>
                 <template #body="{items}">
                     <tr v-for="model in items">
+                        <td class="table-item border">
+                          <div class="flex items-center text-sm">
+                            <div>
+                              <p class="font-semibold">
+                                {{ model.service?.name }}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
                         <td class="table-item border">
                           <div class="flex items-center text-sm">
                             <div>
@@ -126,6 +140,7 @@ const query        = ref(Searcher.query);
                     </td>
                     <td class="table-item border">-</td>
                     <td class="table-item border">-</td>
+                    
                 </template>
             </Table>
         </div>

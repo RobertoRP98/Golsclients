@@ -1,20 +1,34 @@
 <script setup>
 import { goTo, transl } from './Component';
 import { Link, useForm } from '@inertiajs/vue3';
-
 import PrimaryButton   from '@/Components/Dashboard/Button/Primary.vue';
 import Input           from '@/Components/Dashboard/Form/Input.vue';
+import Selectable           from '@/Components/Dashboard/Form/Selectable.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
+import { ref } from 'vue';
+
+//este props trae la informacion de los services
+const props = defineProps({
+    services: Object,
+});
 
 const form = useForm({
+    service_id:'',
     name: '',
     price: '',
    
 });
 
-const submit = () => form.post(route(goTo('store')), {
+//Se hace referencia a service
+const service = ref();
+
+//Pasamos en forma de transform el data, capturando el servicio_id y el valor de este
+const submit = () => form.transform(data => ({
+        ...data,
+        service_id: service.value.id
+    })).post(route(goTo('store')), {
     onSuccess: () => Notify.success(transl('create.onSuccess')),
     onError:   () => Notify.error(transl('create.onError')),
 });
@@ -41,6 +55,18 @@ const submit = () => form.post(route(goTo('store')), {
     </div>
     <div class="w-full">
         <form @submit.prevent="submit" class="grid gap-4 grid-cols-6">
+            <div class="col-span-2">
+                <!-- Para el selectable pasamos el vmodel declarado arriba en props-->
+            <Selectable 
+            title="Servicios"
+            v-model="service"
+            :options="services"
+            placeholder="Servicio"
+            :onError="form.errors.service_id"
+                autofocus
+                required></Selectable>
+        </div>
+        
             <Input
                 id="name"
                 class="col-span-2"

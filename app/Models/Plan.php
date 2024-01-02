@@ -33,6 +33,6 @@ class Plan extends Model
      */
     public function service()
     {
-        return $this->belonsTo(Service::class);
+        return $this->belongsTo(Service::class);
     }
 }
