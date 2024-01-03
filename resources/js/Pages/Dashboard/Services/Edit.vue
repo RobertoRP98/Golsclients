@@ -39,7 +39,6 @@ const update = (id) => {
     >
         <Header
             :title="model.name"
-            :subtitle="model.full_last_name"
         />
         <div class="py-2 border-b">
             <div class="p-4">

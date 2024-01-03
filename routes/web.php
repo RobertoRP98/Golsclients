@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Dashboard\HistoryLogController;
 use App\Http\Controllers\Dashboard\IndexController;
 use App\Http\Controllers\Dashboard\NotificationController;
@@ -32,6 +33,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     Route::inertia('/help', 'Dashboard/Help')->name('help');
     Route::resource('services', ServiceController::class);
     Route::resource('plans', PlanController::class);
+    Route::resource('clients', ClientController::class);
+
 
 
 

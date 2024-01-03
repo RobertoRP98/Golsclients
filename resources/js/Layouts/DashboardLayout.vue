@@ -98,6 +98,12 @@ onMounted(()=> {
                     name="Ventas"
                 >
                     <Link
+                        v-if="hasPermission('clients.index')"
+                        icon="apartment"
+                        name="clients.title"
+                        to="dashboard.clients.index"
+                    />
+                    <Link
                         v-if="hasPermission('services.index')"
                         icon="home_repair_service"
                         name="services.title"

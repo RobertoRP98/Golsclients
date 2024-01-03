@@ -263,5 +263,30 @@ export default {
         
         
     },
+    client:'Cliente',
+    Clients:'Clientes',
+    email:'Correo de la empresa',
+    telephone_company:'Telefono de la empresa',
+    contact_company:'Contacto de la empresa',
+    phone_contact:'Telefono del contacto',
+    email_contact:'Correo del contacto',
+    clients:{
+        create:{
+            title:'Crear Cliente',
+            description:'Permite crear nuevo cliente.',
+            onSuccess:'Cliente creado',
+            onError:'Ocurrió un error al crear el cliente'
+        },
+        deleted:'Cliente eliminado',
+        notFount:'Cliente no encontrado',
+
+        menu:'Menú de clientes',
+        select:'Seleccionar un cliente',
+        settings:'Ajustes del cliente',
+        system:'Clientes',
+        title:'Clientes',
+        
+        
+    },
     version:'Versión',
 }
