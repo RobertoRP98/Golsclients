@@ -14,7 +14,7 @@ import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 
 //este props trae la informacion de los clientes
 const props = defineProps({
-    clients: Object
+    contracts: Object
 });
 
 // Controladores
@@ -46,26 +46,22 @@ const query        = ref(Searcher.query);
                 />
             </Link>
         </SearcherHead>
-        <!--{{clients}}-->
  
         <div class="pt-2 w-full">
             <Table 
-                :items="clients"
+                :items="contracts"
                 @send-pagination="Searcher.searchWithPagination"
             >
                 <template #head>
                     <th
                         class="table-item"
-                        v-text="$t('client')"
+                        v-text="$t('service')"
                     />
                     <th
                         class="table-item"
-                        v-text="$t('email')"
+                        v-text="$t('plan')"
                     />
-                    <th
-                        class="table-item"
-                        v-text="$t('telephone_company')"
-                    />
+                    
                     <th
                         class="table-item w-44"
                         v-text="$t('actions')"
@@ -77,7 +73,7 @@ const query        = ref(Searcher.query);
                           <div class="flex items-center text-sm">
                             <div>
                               <p class="font-semibold">
-                                {{ model.name }}
+                                {{ model.service?.name }}
                               </p>
                             </div>
                           </div>
@@ -86,32 +82,12 @@ const query        = ref(Searcher.query);
                           <div class="flex items-center text-sm">
                             <div class="text-left">
                               <p class="font-semibold">
-                                {{ model.email}}
+                                {{ model.plan?.name}}
                               </p>
                             </div>
                           </div>
                         </td>
                         <td class="table-item border">
-                          <div class="flex items-center text-sm">
-                            <div class="text-left">
-                              <p class="font-semibold">
-                                {{ model.telephone_company}}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="table-item border">
-                            <Link
-                                    :href="route(goTo('contracts.index'),model.id)"
-                                >
-                                    <GoogleIcon
-                                        :title="$t('crud.create')"
-                                        class="btn-icon-primary"
-                                        name="add"
-                                        outline
-                                    />
-                                </Link>
-                                
                             <div class="flex justify-center space-x-2">
                                 <GoogleIcon
                                     :title="$t('crud.show')"
@@ -152,12 +128,10 @@ const query        = ref(Searcher.query);
                     </td>
                     <td class="table-item border">-</td>
                     <td class="table-item border">-</td>
-                    <td class="table-item border">-</td>
 
                 </template>
             </Table>
         </div>
-        
         
         <ShowView 
             v-if="can('index')"

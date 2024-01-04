@@ -28,4 +28,10 @@ class Client extends Model
     protected $fillable = [
         'name', 'email', 'telephone_company', 'contact_company', 'phone_contact', 'email_contact'
     ];
+
+    /**Relacion muchos a muchos */
+    public function plans()
+    {
+        return $this->belongsToMany('App\Models\Plan');
+    }
 }

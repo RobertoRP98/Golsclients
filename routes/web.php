@@ -34,8 +34,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     Route::resource('services', ServiceController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('clients', ClientController::class);
-
-
+    Route::get('/clients/{client}/contracts', [ClientController::class, 'contractsIndex'])->name('clients.contracts.index');
 
 
     # Log de Acciones
