@@ -7,10 +7,12 @@ namespace App\Http\Controllers;
  */
 
 use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\StoreContract;
 use App\Http\Requests\UpdateClientRequest;
 use App\Http\Traits\UseFetch;
 use App\Models\Client;
 use App\Models\Plan;
+use App\Models\Service;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Notsoweb\Core\Http\Controllers\VueController;
@@ -133,6 +135,7 @@ class ClientController extends VueController
             [
                 'contracts' => $contracts,
                 'client' => $client
+
             ]
         );
     }
@@ -141,7 +144,19 @@ class ClientController extends VueController
     {
         //   dd($client);
         return Inertia::render('Dashboard/Clients/Contracts/Create', [
-            'client' => $client
+            'client' => $client,
+            'services' => Service::get(),
+            'plans' => Plan::get(),
+
+
         ]);
+    }
+
+    /** Definimos los campos que rellenaremos en StoreContract*/
+    public function storeContract(StoreContract $request)
+    {
+        $data = $request->all();
+        Client::create($data);
+        return $this->index();
     }
 }

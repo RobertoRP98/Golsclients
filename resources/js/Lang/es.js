@@ -292,16 +292,16 @@ export default {
     },
     contracts: {
         create: {
-            title: 'Crear Cliente',
-            description: 'Permite crear nuevo cliente.',
-            onSuccess: 'Cliente creado',
-            onError: 'Ocurrió un error al crear el cliente'
+            title: 'Asignar un plan al cliente',
+            description: 'Permite crear nuevo plan',
+            onSuccess: 'Plan agregado',
+            onError: 'Ocurrió un error al agregar el cliente'
         },
-        deleted: 'Cliente eliminado',
-        notFount: 'Cliente no encontrado',
-        menu: 'Menú de clientes',
-        select: 'Seleccionar un cliente',
-        settings: 'Ajustes del cliente',
+        deleted: 'Plan eliminado',
+        notFount: 'Plan no encontrado',
+        menu: 'Menú de Planes asignados',
+        select: 'Seleccionar un Plan',
+        settings: 'Ajustes del Plan',
         system: 'Planes de: ',
         title: 'Planes del clientes',
     },

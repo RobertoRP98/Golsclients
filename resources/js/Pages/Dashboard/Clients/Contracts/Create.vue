@@ -3,11 +3,17 @@ import { goTo, transl } from './Component';
 import { Link, useForm } from '@inertiajs/vue3';
 import PrimaryButton   from '@/Components/Dashboard/Button/Primary.vue';
 import Input           from '@/Components/Dashboard/Form/Input.vue';
-import Selectable           from '@/Components/Dashboard/Form/Selectable.vue';
+import Selectable      from '@/Components/Dashboard/Form/Selectable.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { ref } from 'vue';
+
+//este props trae la informacion de los services y plans
+const props = defineProps({
+    services: Object,
+    plans: Object,
+});
 
 const form = useForm({
     service_id:'',
@@ -50,51 +56,30 @@ const submit = () => form.transform(data=>({
     </div>
     <div class="w-full">
         <form @submit.prevent="submit" class="grid gap-4 grid-cols-6">
-            <Input
-                id="name"
-                class="col-span-2"
-                v-model="form.name"
-                :onError="form.errors.name"
+            <!-- Para el selectable pasamos el vmodel declarado arriba en props -->
+            <!--para el :optiones="X" le tenemos que pasar esta variable desde el controlador en el area del create-->
+            <div class="col-span-2">
+            <Selectable 
+            title="Servicios"
+            v-model="service"
+            :options="services"
+            placeholder="Servicio"
+            :onError="form.errors.service_id"
                 autofocus
-                required
-            />
-            <Input
-                id="email"
-                class="col-span-2"
-                v-model="form.email"
-                :onError="form.errors.email"
+                required></Selectable>
+        </div>
+            <div class="col-span-2">
+            <Selectable 
+            title="Planes"
+            v-model="plan"
+            :options="plans"
+            placeholder="Plan"
+            :onError="form.errors.plan_id"
                 autofocus
-                required
-            />
-            <Input
-                id="telephone_company"
-                class="col-span-2"
-                v-model="form.telephone_company"
-                :onError="form.errors.telephone_company"
-                autofocus
-                required
-            /><Input
-                id="contact_company"
-                class="col-span-2"
-                v-model="form.contact_company"
-                :onError="form.errors.contact_company"
-                autofocus
-                required
-            /><Input
-                id="phone_contact"
-                class="col-span-2"
-                v-model="form.phone_contact"
-                :onError="form.errors.phone_contact"
-                autofocus
-                required
-            /><Input
-                id="email_contact"
-                class="col-span-2"
-                v-model="form.email_contact"
-                :onError="form.errors.email_contact"
-                autofocus
-                required
-            />
+                required></Selectable>
+        </div>
+
+            
             <div class="col-span-6 flex flex-col items-center justify-end space-y-4 mt-4">
                 <PrimaryButton
                     :class="{ 'opacity-25': form.processing }" 

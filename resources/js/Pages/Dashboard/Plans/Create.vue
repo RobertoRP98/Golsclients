@@ -3,7 +3,7 @@ import { goTo, transl } from './Component';
 import { Link, useForm } from '@inertiajs/vue3';
 import PrimaryButton   from '@/Components/Dashboard/Button/Primary.vue';
 import Input           from '@/Components/Dashboard/Form/Input.vue';
-import Selectable           from '@/Components/Dashboard/Form/Selectable.vue';
+import Selectable      from '@/Components/Dashboard/Form/Selectable.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
