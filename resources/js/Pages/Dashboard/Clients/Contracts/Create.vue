@@ -1,23 +1,28 @@
 <script setup>
 import { goTo, transl } from './Component';
 import { Link, useForm } from '@inertiajs/vue3';
-
 import PrimaryButton   from '@/Components/Dashboard/Button/Primary.vue';
 import Input           from '@/Components/Dashboard/Form/Input.vue';
+import Selectable           from '@/Components/Dashboard/Form/Selectable.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
+import { ref } from 'vue';
 
 const form = useForm({
-    name: '',
-    email: '',
-    telephone_company:'',
-    contact_company:'',
-    phone_contact:'',
-    email_contact:'',
+    service_id:'',
+    plan_id:'',
 });
+//Se hace referencia a service
+const service = ref();
+//Se hace referencia a plan
+const plan = ref();
 
-const submit = () => form.post(route(goTo('store')), {
+const submit = () => form.transform(data=>({
+    ...data,
+    service_id: service.value.id,
+    plan_id: plan.value.id
+})).post(route(goTo('store')),{
     onSuccess: () => Notify.success(transl('create.onSuccess')),
     onError:   () => Notify.error(transl('create.onError')),
     onFinish:  () => form.reset('password')

@@ -109,7 +109,8 @@ class ClientController extends VueController
 
         //obtener los planes asociados al cliente
 
-        $contracts = $client->plans()->with(['service:id,name'])
+        $contracts = $client->plans()
+            ->with(['service:id,name', 'client:id,name'])
             ->where(function ($query) use ($q) {
                 $query->where('name', 'LIKE', "%{$q}%")
                     ->orWhere('price', 'LIKE', "%{$q}%")
@@ -121,14 +122,26 @@ class ClientController extends VueController
                 'id',
                 'name',
                 'price',
-                'service_id'
+                'service_id',
+                'client_id'
             ])
             ->paginate(config('app.pagination'));
 
         /** Se envia la vista del index añadiendo los planes y servicios  */
         return Inertia::render(
             'Dashboard/Clients/Contracts/Index',
-            ['plans' => $contracts]
+            [
+                'contracts' => $contracts,
+                'client' => $client
+            ]
         );
+    }
+    /**Formulario para crear un plan a un cliente */
+    public function contractsCreate(Client $client)
+    {
+        //   dd($client);
+        return Inertia::render('Dashboard/Clients/Contracts/Create', [
+            'client' => $client
+        ]);
     }
 }

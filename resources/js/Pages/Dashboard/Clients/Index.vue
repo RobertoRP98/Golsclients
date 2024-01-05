@@ -105,9 +105,9 @@ const query        = ref(Searcher.query);
                                     :href="route(goTo('contracts.index'),model.id)"
                                 >
                                     <GoogleIcon
-                                        :title="$t('crud.create')"
+                                        :title="$t('Planes')"
+                                        name="checklist"
                                         class="btn-icon-primary"
-                                        name="add"
                                         outline
                                     />
                                 </Link>

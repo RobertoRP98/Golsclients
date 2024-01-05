@@ -11,11 +11,16 @@ import DestroyView     from './Destroy.vue';
 import EditView        from './Edit.vue';
 import ShowView        from './Show.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
+import { objectPick } from '@vueuse/core';
 
 //este props trae la informacion de los clientes
 const props = defineProps({
-    contracts: Object
+    contracts: Object,
+    client:Object,
 });
+
+
+
 
 // Controladores
 const Modal    = new ModalController();
@@ -32,11 +37,11 @@ const query        = ref(Searcher.query);
 </script>
 <template>
   
-    <DashboardLayout :title="transl('system')">
+    <DashboardLayout :title="transl('system') + client?.name">
+
         <SearcherHead @search="Searcher.search">
             <Link
-            v-if="can('create')"
-                :href="route(goTo('create'))"
+                :href="route(goTo('contracts.create'),client.id)"
             >
                 <GoogleIcon
                     :title="$t('crud.create')"
