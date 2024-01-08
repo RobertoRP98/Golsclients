@@ -36,6 +36,9 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     Route::resource('clients', ClientController::class);
     Route::get('/clients/{client}/contracts', [ClientController::class, 'contractsIndex'])->name('clients.contracts.index');
     Route::get('/clients/{client}/contracts/create', [ClientController::class, 'contractsCreate'])->name('clients.contracts.create');
+    Route::get('/clients/{client}/contracts/services', [ClientController::class, 'contractsServices'])->name('clients.contracts.services');
+    //Route::get('/clients', [ClientController::class, 'contractsPlans']);
+
 
 
 

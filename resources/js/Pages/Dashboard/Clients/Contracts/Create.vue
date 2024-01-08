@@ -7,7 +7,7 @@ import Selectable      from '@/Components/Dashboard/Form/Selectable.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 //este props trae la informacion de los services y plans
 const props = defineProps({
@@ -32,6 +32,12 @@ const submit = () => form.transform(data=>({
     onSuccess: () => Notify.success(transl('create.onSuccess')),
     onError:   () => Notify.error(transl('create.onError')),
     onFinish:  () => form.reset('password')
+});
+
+watch(service, () => {
+    axios.get(route('clients.contracts.services')).then(response => {
+         plan.value=response.data.services;
+    });
 });
 </script>
 

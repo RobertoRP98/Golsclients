@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\StoreContract;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Resources\ClientResource;
 use App\Http\Traits\UseFetch;
 use App\Models\Client;
 use App\Models\Plan;
@@ -158,5 +159,16 @@ class ClientController extends VueController
         $data = $request->all();
         Client::create($data);
         return $this->index();
+    }
+
+    public function contractsServices()
+    {
+        $service_id = request('service_id');
+        $services = Service::where('service_id', $service_id)->get();
+        //return ClientResource::collection($services);
+
+        return $this->successFetch([
+            'services' => $services
+        ]);
     }
 }
