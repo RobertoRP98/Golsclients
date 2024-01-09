@@ -13,6 +13,7 @@ import axios from 'axios';
 //este props trae la informacion de los services y plans
 const props = defineProps({
     services: Object,
+    client: Object,
 });
 
 const form = useForm({
@@ -27,9 +28,8 @@ const plan = ref();
 
 const submit = () => form.transform(data=>({
     ...data,
-    service_id: service.value.id,
-    plan_id: plan.value.id
-})).post(route(goTo('store')),{
+    plan_id: plan.value.id 
+})).post(route(goTo('contracts.store'), props.client.id),{
     onSuccess: () => Notify.success(transl('create.onSuccess')),
     onError:   () => Notify.error(transl('create.onError')),
     onFinish:  () => form.reset('password')

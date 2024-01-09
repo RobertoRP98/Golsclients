@@ -87,7 +87,7 @@ const query        = ref(Searcher.query);
                           <div class="flex items-center text-sm">
                             <div class="text-left">
                               <p class="font-semibold">
-                                {{ model.plan?.name}}
+                                {{ model.name}}
                               </p>
                             </div>
                           </div>

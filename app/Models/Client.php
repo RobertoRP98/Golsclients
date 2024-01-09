@@ -29,9 +29,11 @@ class Client extends Model
         'name', 'email', 'telephone_company', 'contact_company', 'phone_contact', 'email_contact'
     ];
 
-    /**Relacion muchos a muchos */
+    /**
+     * Relacion muchos a muchos 
+     */
     public function plans()
     {
-        return $this->belongsToMany('App\Models\Plan');
+        return $this->belongsToMany(Plan::class);
     }
 }

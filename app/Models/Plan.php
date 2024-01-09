@@ -39,6 +39,6 @@ class Plan extends Model
     /** Relacion muchos a muchos*/
     public function clients()
     {
-        return $this->belongsToMany('App\Models\Client');
+        return $this->belongsToMany(Client::class);
     }
 }

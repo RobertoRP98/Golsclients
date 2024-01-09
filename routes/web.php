@@ -35,8 +35,12 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     Route::resource('services', ServiceController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('clients', ClientController::class);
-    Route::get('/clients/{client}/contracts', [ClientController::class, 'contractsIndex'])->name('clients.contracts.index');
-    Route::get('/clients/{client}/contracts/create', [ClientController::class, 'contractsCreate'])->name('clients.contracts.create');
+    Route::prefix('/clients/{client}')->name('clients.')->group(function () {
+        Route::get('/contracts', [ClientController::class, 'contractsIndex'])->name('contracts.index');
+        Route::get('/contracts/create', [ClientController::class, 'contractsCreate'])->name('contracts.create');
+        Route::Post('/contracts/create', [ClientController::class, 'storeContract'])->name('contracts.store');
+    });
+
 
     # Log de Acciones
     Route::resource('histories', HistoryLogController::class)->only([

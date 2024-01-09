@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\StoreContract;
+use App\Http\Requests\StorePlanClient;
 use App\Http\Requests\UpdateClientRequest;
 use App\Http\Resources\ClientResource;
 use App\Http\Traits\UseFetch;
@@ -115,7 +116,7 @@ class ClientController extends VueController
         //obtener los planes asociados al cliente
 
         $contracts = $client->plans()
-            ->with(['service:id,name', 'client:id,name'])
+            ->with(['service:id,name'])
             ->where(function ($query) use ($q) {
                 $query->where('name', 'LIKE', "%{$q}%")
                     ->orWhere('price', 'LIKE', "%{$q}%")
@@ -123,13 +124,7 @@ class ClientController extends VueController
                         $subquery->where('name', 'LIKE', "%{$q}%");
                     });
             })
-            ->select([
-                'id',
-                'name',
-                'price',
-                'service_id',
-                'client_id'
-            ])
+
             ->paginate(config('app.pagination'));
 
         /** Se envia la vista del index añadiendo los planes y servicios  */
@@ -147,24 +142,21 @@ class ClientController extends VueController
      */
     public function contractsCreate(Client $client)
     {
-        //   dd($client);
         return Inertia::render('Dashboard/Clients/Contracts/Create', [
             'client' => $client,
             'services' => Service::get(),
         ]);
     }
 
-    public function getPlans()
-    {
-    }
-
     /**
      *  Definimos los campos que rellenaremos en StoreContract
      */
-    public function storeContract(StoreContract $request)
+    public function storeContract(StorePlanClient $request, Client $client)
     {
         $data = $request->all();
-        Client::create($data);
+        //dd($data);
+
+        $client->plans()->attach($data['plan_id']);
         return $this->index();
     }
 }
