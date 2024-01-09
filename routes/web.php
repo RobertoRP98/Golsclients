@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Dashboard\Client\ResourceController as ClientResourceController;
 use App\Http\Controllers\Dashboard\HistoryLogController;
 use App\Http\Controllers\Dashboard\IndexController;
 use App\Http\Controllers\Dashboard\NotificationController;
@@ -36,11 +37,6 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     Route::resource('clients', ClientController::class);
     Route::get('/clients/{client}/contracts', [ClientController::class, 'contractsIndex'])->name('clients.contracts.index');
     Route::get('/clients/{client}/contracts/create', [ClientController::class, 'contractsCreate'])->name('clients.contracts.create');
-    Route::get('/clients/{client}/contracts/services', [ClientController::class, 'contractsServices'])->name('clients.contracts.services');
-    //Route::get('/clients', [ClientController::class, 'contractsPlans']);
-
-
-
 
     # Log de Acciones
     Route::resource('histories', HistoryLogController::class)->only([
@@ -100,4 +96,17 @@ Route::prefix('examples')->name('examples.')->middleware([
     config('jetstream.auth_session')
 ])->group(function () {
     Route::get('/', [ExampleIndexController::class, 'index'])->name('index');
+});
+
+/**
+ * Rutas de recursos (axios)
+ */
+Route::prefix('resources')->name('resources.')->middleware([
+    'auth:sanctum',
+    'verified',
+    config('jetstream.auth_session')
+])->group(function () {
+    Route::prefix('services')->name('services.')->group(function () {
+        Route::get('{service}/get-plans', [ClientResourceController::class, 'getPlans'])->name('get-plans');
+    });
 });

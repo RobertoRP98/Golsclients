@@ -7,12 +7,12 @@ import Selectable      from '@/Components/Dashboard/Form/Selectable.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
+import axios from 'axios';
 
 //este props trae la informacion de los services y plans
 const props = defineProps({
     services: Object,
-    plans: Object,
 });
 
 const form = useForm({
@@ -22,6 +22,7 @@ const form = useForm({
 //Se hace referencia a service
 const service = ref();
 //Se hace referencia a plan
+const plans = ref([]);
 const plan = ref();
 
 const submit = () => form.transform(data=>({
@@ -35,10 +36,17 @@ const submit = () => form.transform(data=>({
 });
 
 watch(service, () => {
-    axios.get(route('clients.contracts.services')).then(response => {
-         plan.value=response.data.services;
-    });
-});
+    if(service.value){
+        axios.get(route('resources.services.get-plans', {service:service.value.id})).then((response) => {
+            plans.value = response.data.plans
+        }).catch((error) => {
+            console.error(error);
+        });
+    } else {
+        plans.value = [];
+        plan.value = '';
+    }
+})
 </script>
 
 <template>

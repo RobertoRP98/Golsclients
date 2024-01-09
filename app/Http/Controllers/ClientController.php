@@ -105,7 +105,9 @@ class ClientController extends VueController
         }
     }
 
-    /** Index de los contratos*/
+    /** 
+     * Index de los contratos
+     */
     public function contractsIndex(Client $client)
     {
         $q = request()->get('q');
@@ -140,35 +142,29 @@ class ClientController extends VueController
             ]
         );
     }
-    /**Formulario para crear un plan a un cliente */
+    /**
+     * Formulario para crear un plan a un cliente 
+     */
     public function contractsCreate(Client $client)
     {
         //   dd($client);
         return Inertia::render('Dashboard/Clients/Contracts/Create', [
             'client' => $client,
             'services' => Service::get(),
-            'plans' => Plan::get(),
-
-
         ]);
     }
 
-    /** Definimos los campos que rellenaremos en StoreContract*/
+    public function getPlans()
+    {
+    }
+
+    /**
+     *  Definimos los campos que rellenaremos en StoreContract
+     */
     public function storeContract(StoreContract $request)
     {
         $data = $request->all();
         Client::create($data);
         return $this->index();
-    }
-
-    public function contractsServices()
-    {
-        $service_id = request('service_id');
-        $services = Service::where('service_id', $service_id)->get();
-        //return ClientResource::collection($services);
-
-        return $this->successFetch([
-            'services' => $services
-        ]);
     }
 }
