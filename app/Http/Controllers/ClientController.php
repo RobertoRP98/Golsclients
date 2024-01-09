@@ -56,7 +56,9 @@ class ClientController extends VueController
         ]);
     }
 
-    /**Formulario para crear un cliente */
+    /**
+     * Formulario para crear un cliente 
+     */
     public function create()
     {
         return Inertia::render('Dashboard/Clients/Create');
@@ -127,7 +129,9 @@ class ClientController extends VueController
 
             ->paginate(config('app.pagination'));
 
-        /** Se envia la vista del index añadiendo los planes y servicios  */
+        /** 
+         *Se envia la vista del index añadiendo los planes y servicios 
+         */
         return Inertia::render(
             'Dashboard/Clients/Contracts/Index',
             [

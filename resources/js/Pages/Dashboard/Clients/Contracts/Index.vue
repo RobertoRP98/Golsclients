@@ -36,9 +36,7 @@ const query        = ref(Searcher.query);
 
 </script>
 <template>
-  
     <DashboardLayout :title="transl('system') + client?.name">
-
         <SearcherHead @search="Searcher.search">
             <Link
                 :href="route(goTo('contracts.create'),client.id)"
@@ -51,7 +49,6 @@ const query        = ref(Searcher.query);
                 />
             </Link>
         </SearcherHead>
- 
         <div class="pt-2 w-full">
             <Table 
                 :items="contracts"
@@ -133,7 +130,6 @@ const query        = ref(Searcher.query);
                     </td>
                     <td class="table-item border">-</td>
                     <td class="table-item border">-</td>
-
                 </template>
             </Table>
         </div>

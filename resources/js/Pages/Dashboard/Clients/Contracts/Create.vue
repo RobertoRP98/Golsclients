@@ -2,7 +2,6 @@
 import { goTo, transl } from './Component';
 import { Link, useForm } from '@inertiajs/vue3';
 import PrimaryButton   from '@/Components/Dashboard/Button/Primary.vue';
-import Input           from '@/Components/Dashboard/Form/Input.vue';
 import Selectable      from '@/Components/Dashboard/Form/Selectable.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';
 import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
@@ -29,12 +28,13 @@ const plan = ref();
 const submit = () => form.transform(data=>({
     ...data,
     plan_id: plan.value.id 
+    //Se modifica la ruta de store, basado en la ruta creada
 })).post(route(goTo('contracts.store'), props.client.id),{
     onSuccess: () => Notify.success(transl('create.onSuccess')),
     onError:   () => Notify.error(transl('create.onError')),
     onFinish:  () => form.reset('password')
 });
-
+//se pasa al watch la observacion del servicio que pueda cambiar y basado en eso traer los planes
 watch(service, () => {
     if(service.value){
         axios.get(route('resources.services.get-plans', {service:service.value.id})).then((response) => {
@@ -48,7 +48,6 @@ watch(service, () => {
     }
 })
 </script>
-
 <template>
   <DashboardLayout :title="transl('create.title')">
     <PageHeader>
@@ -92,8 +91,6 @@ watch(service, () => {
                 autofocus
                 required></Selectable>
         </div>
-
-            
             <div class="col-span-6 flex flex-col items-center justify-end space-y-4 mt-4">
                 <PrimaryButton
                     :class="{ 'opacity-25': form.processing }" 

@@ -1,9 +1,14 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
+
 /**
  * @copyright Copyright (c) 2023 Notsoweb (https://notsoweb.com) - All rights reserved.
  */
 
+use App\Models\Client;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Notsoweb\Core\Http\Controllers\VueController;
 
 /**
@@ -13,16 +18,42 @@ use Notsoweb\Core\Http\Controllers\VueController;
  * 
  * @version 1.0.0
  */
-class GestionController extends VueController
+class ManagementController extends VueController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Client $client)
     {
-        //
+        $q = request()->get('q');
+
+        //obtener los planes asociados al cliente
+
+        $contracts = $client->plans()
+            ->with(['service:id,name'])
+            ->where(function ($query) use ($q) {
+                $query->where('name', 'LIKE', "%{$q}%")
+                    ->orWhere('price', 'LIKE', "%{$q}%")
+                    ->orWhereHas('service', function ($subquery) use ($q) {
+                        $subquery->where('name', 'LIKE', "%{$q}%");
+                    });
+            })
+
+            ->paginate(config('app.pagination'));
+
+        /** 
+         *Se envia la vista del index añadiendo los planes y servicios 
+         */
+        return Inertia::render(
+            'Dashboard/Gestion/Index',
+            [
+                'contracts' => $contracts,
+                'client' => $client
+
+            ]
+        );
     }
 
     /**
