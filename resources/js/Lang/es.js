@@ -305,5 +305,10 @@ export default {
         system: 'Planes de: ',
         title: 'Planes del clientes',
     },
+    management: 'Gestión de clientes',
+    management: {
+        system: 'Gestión de clientes',
+        title: 'Gestión de clientes',
+    },
     version: 'Versión',
 }

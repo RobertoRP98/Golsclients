@@ -86,6 +86,15 @@ class RoleSeeder extends Seeder
                 $contractsDestroy
             ] = $this->onCRUD('contracts', 'Planes del cliente:');
 
+
+            // Permisos para la gestion de los clientes
+            [
+                $managementIndex,
+                $managementCreate,
+                $managementEdit,
+                $managementDestroy
+            ] = $this->onCRUD('management', 'Gestión de los cliente:');
+
             //corer  php artisan migrate:refresh --seed al crear mas permisos
 
             /**
@@ -123,7 +132,11 @@ class RoleSeeder extends Seeder
                 $contractsIndex,
                 $contractsCreate,
                 $contractsEdit,
-                $contractsDestroy
+                $contractsDestroy,
+                $managementIndex,
+                $managementCreate,
+                $managementEdit,
+                $managementDestroy
             );
 
             // Role de supervisor (solo lectura)
@@ -138,6 +151,8 @@ class RoleSeeder extends Seeder
                 $plansIndex,
                 $clientsIndex,
                 $contractsIndex,
+                $managementIndex,
+
 
             );
         });

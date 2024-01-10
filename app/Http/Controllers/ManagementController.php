@@ -29,7 +29,7 @@ class ManagementController extends VueController
     {
         $q = request()->get('q');
 
-        //obtener los planes asociados al cliente
+        //obtener los clientes y los planes asociados al cliente
 
         $contracts = $client->plans()
             ->with(['service:id,name'])
@@ -47,7 +47,7 @@ class ManagementController extends VueController
          *Se envia la vista del index añadiendo los planes y servicios 
          */
         return Inertia::render(
-            'Dashboard/Gestion/Index',
+            'Dashboard/Management/Index',
             [
                 'contracts' => $contracts,
                 'client' => $client

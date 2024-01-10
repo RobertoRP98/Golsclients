@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Developer\RoleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Example\IndexController as ExampleIndexController;
+use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\PlanController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +33,13 @@ Route::prefix('dashboard')->name('dashboard.')->middleware([
     Route::get('/welcome', [IndexController::class, 'index'])->name('index');
     Route::inertia('/changelogs', 'Dashboard/Changelogs')->name('changelogs');
     Route::inertia('/help', 'Dashboard/Help')->name('help');
-    Route::resource('services', ServiceController::class);
-    Route::resource('plans', PlanController::class);
     Route::resource('clients', ClientController::class);
+    Route::resource('management', ManagementController::class);
+    Route::resource('plans', PlanController::class);
+    Route::resource('services', ServiceController::class);
+    /** 
+     * Rutas para los planes que se le crean al cliente
+     */
     Route::prefix('/clients/{client}')->name('clients.')->group(function () {
         Route::get('/contracts', [ClientController::class, 'contractsIndex'])->name('contracts.index');
         Route::get('/contracts/create', [ClientController::class, 'contractsCreate'])->name('contracts.create');

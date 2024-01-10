@@ -98,6 +98,12 @@ onMounted(()=> {
                     name="Ventas"
                 >
                     <Link
+                        v-if="hasPermission('management.index')"
+                        icon="analytics"
+                        name="management.title"
+                        to="dashboard.management.index"
+                    />
+                    <Link
                         v-if="hasPermission('clients.index')"
                         icon="apartment"
                         name="clients.title"
@@ -115,6 +121,8 @@ onMounted(()=> {
                         name="plans.title"
                         to="dashboard.plans.index"
                     />
+                    
+                  
                 </Section>
             </Sidebar>
         </div>
