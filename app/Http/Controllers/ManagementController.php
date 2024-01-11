@@ -25,23 +25,29 @@ class ManagementController extends VueController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Client $client)
+    public function index()
     {
         $q = request()->get('q');
-
-        //obtener los clientes y los planes asociados al cliente
-
-        $contracts = $client->plans()
-            ->with(['service:id,name'])
+        $clients = Client::with([
+            'plans',
+            'plans.service'
+        ])
             ->where(function ($query) use ($q) {
-                $query->where('name', 'LIKE', "%{$q}%")
-                    ->orWhere('price', 'LIKE', "%{$q}%")
-                    ->orWhereHas('service', function ($subquery) use ($q) {
-                        $subquery->where('name', 'LIKE', "%{$q}%");
-                    });
+                $query->where('name', 'LIKE', "%{$q}%");
             })
-
             ->paginate(config('app.pagination'));
+        //obtener los clientes y los planes asociados al cliente
+        // $contracts = $clients->plans()
+        //     ->with(['service:id,name'])
+        //     ->where(function ($query) use ($q) {
+        //         $query->where('name', 'LIKE', "%{$q}%")
+        //             ->orWhere('price', 'LIKE', "%{$q}%")
+        //             ->orWhereHas('service', function ($subquery) use ($q) {
+        //                 $subquery->where('name', 'LIKE', "%{$q}%");
+        //             });
+        //     })
+
+        //     ->paginate(config('app.pagination'));
 
         /** 
          *Se envia la vista del index añadiendo los planes y servicios 
@@ -49,9 +55,7 @@ class ManagementController extends VueController
         return Inertia::render(
             'Dashboard/Management/Index',
             [
-                'contracts' => $contracts,
-                'client' => $client
-
+                'clients' => $clients
             ]
         );
     }

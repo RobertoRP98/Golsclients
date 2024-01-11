@@ -19,13 +19,9 @@ const props = defineProps({
     client:Object,
 });
 
-
-
-
 // Controladores
 const Modal    = new ModalController();
 const Searcher = new SearcherController(goTo('index'));
-
 
 // Variables de controladores
 const destroyModal = ref(Modal.destroyModal);
