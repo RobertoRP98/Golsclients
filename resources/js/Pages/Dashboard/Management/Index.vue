@@ -9,11 +9,8 @@ import SearcherHead    from '@/Components/Dashboard/Searcher.vue';
 import Card    from '@/Components/Dashboard/Card.vue';
 import Cards    from '@/Components/Dashboard/Cards.vue';
 
-
-
 //este props trae la informacion de los clientes
 const props = defineProps({
-    contracts: Object,
     clients:Object,
 });
 
@@ -21,13 +18,15 @@ const props = defineProps({
 const Searcher = new SearcherController(goTo('index'));
 
 const query        = ref(Searcher.query);
-
 </script>
+
 <template>
     <DashboardLayout :title="transl('system')">
       <SearcherHead @search="Searcher.search" />
-     <!-- {{ clients }} -->
-     <div class="w-full justify-center">
+   <!-- {{ clients }} -->
+     <!-- {{ clients.service?.name }} -->
+
+     <div class="w-full justify-center ">
     <div class="py-5 px-5 gap-2">
     <Cards>
       <Card v-for="client in clients.data" :key="client.id" :client="client"></Card>
