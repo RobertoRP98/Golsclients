@@ -1,9 +1,14 @@
-<?php namespace Database\Seeders;
+<?php
+
+namespace Database\Seeders;
+
 /**
  * @copyright Copyright (c) 2023 Notsoweb (https://notsoweb.com) - All rights reserved.
  */
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 
 /**
@@ -23,5 +28,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+
+        Client::factory(150)->create();
     }
 }

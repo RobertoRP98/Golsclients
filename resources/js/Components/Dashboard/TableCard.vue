@@ -1,4 +1,9 @@
 <script setup>
+import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
+const emit = defineEmits([
+  'send-pagination'
+]);
+
 const props = defineProps({
     items: Object,
 });
@@ -9,7 +14,8 @@ const props = defineProps({
     <section class="py-4">
         <div class="w-full overflow-hidden rounded-md shadow-lg">
             <div class="w-full overflow-x-auto">
-                <table class="w-full">
+                <table class="w-full"
+                >
                     <thead>
                         <tr class="table-head">
                             <slot name="head" />
@@ -22,11 +28,13 @@ const props = defineProps({
                                 name="body"
                                 :items="items"
                             />
-                        
                     </tbody>
                 </table>
+
+                
             </div>
         </div>
     </section>
-
     </template>
+
+    
