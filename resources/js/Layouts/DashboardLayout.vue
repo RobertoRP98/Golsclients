@@ -110,16 +110,16 @@ onMounted(()=> {
                         to="dashboard.clients.index"
                     />
                     <Link
-                        v-if="hasPermission('services.index')"
-                        icon="home_repair_service"
-                        name="services.title"
-                        to="dashboard.services.index"
-                    />
-                    <Link
                         v-if="hasPermission('plans.index')"
                         icon="checklist"
                         name="plans.title"
                         to="dashboard.plans.index"
+                    />
+                    <Link
+                        v-if="hasPermission('services.index')"
+                        icon="home_repair_service"
+                        name="services.title"
+                        to="dashboard.services.index"
                     />
                     
                   

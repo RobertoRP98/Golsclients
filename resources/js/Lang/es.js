@@ -269,7 +269,7 @@ export default {
     Clients: 'Clientes',
     email: 'Correo de la empresa',
     telephone_company: 'Telefono de la empresa',
-    contact_company: 'Contacto de la empresa',
+    contact_company: 'Persona de contacto de la empresa',
     phone_contact: 'Telefono del contacto',
     email_contact: 'Correo del contacto',
     clients: {
