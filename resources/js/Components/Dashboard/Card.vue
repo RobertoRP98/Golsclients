@@ -1,8 +1,15 @@
 <script setup>
 import TableCard          from '@/Components/Dashboard/TableCard.vue';
+import { ref } from 'vue';
+
 const props = defineProps({
     client:Object,
 });
+
+const emits = defineEmits([
+    'open' 
+]);
+
 
 </script>
 
@@ -15,57 +22,28 @@ const props = defineProps({
       <p class="font- text-white-50 text-lg mt-2 text-justify mb-1" > Nombre de contacto de la empresa: {{ client.contact_company }}</p>
       <p class="font- text-white-50 text-lg mb-0 text-justify"> Numero del contacto: {{ client.telephone_company }}</p>
       <div>
-        <TableCard 
-                :items="client"
-            >
-                <template #head>
-                    <th
-                        class="table-item"
-                        v-text="$t('service')"
-                    />
-                    <th
-                        class="table-item"
-                        v-text="$t('plan')"
-                    />
-                </template>
-                <template #body="{items}">
-                    <tr v-for="model in items.plans">
-                      <!-- {{ model }} -->
-                        <td class="table-item border">
-                          <div class="flex items-center text-sm">
-                            <div>
-                              <p class="font-semibold">
-                                {{ model.service?.name }}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="table-item border">
-                          <div class="flex items-center text-sm">
-                            <div class="text-left">
-                              <p class="font-semibold">
-                                {{ model.name}}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                       </tr>
-                </template>
-                <template #empty>
-                    <td class="table-item border">
-                        <div class="flex items-center text-sm">
-                          <div>
-                            <p class="font-semibold">
-                                {{ $t('registers.empty') }}
-                            </p>
-                          </div>
-                        </div>
-                    </td>
-                    <td class="table-item border">-</td>
-                </template>
-            </TableCard>
-      </div>
-      
+        <TableCard :items="client">
+  <template #body="{ items }">
+    <!-- Mostrar botones en lugar de filas de tabla -->
+    <div class="grid grid-cols-2 gap-4">
+    <template v-for="model in items.plans">
+      <button
+        type="button"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded mb-2"
+        @click="emits('open')"
+      >
+        {{ model.service?.name }} : {{ model.name }}
+      </button>
+    </template>
+  </div>
+  </template>
+  <template #empty>
+    <!-- Manejar el caso cuando no hay datos -->
+    <p>{{ $t('registers.empty') }}</p>
+  </template>
+</TableCard>
+
+      </div>  
     </div>
 </div>
 </div>

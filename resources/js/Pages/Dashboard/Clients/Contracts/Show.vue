@@ -24,8 +24,9 @@ defineProps({
         editable
     >
         <Header
-            :title="model.name"
+            :title="model.name"   
         >
+    
         </Header>
         <div class="py-2 border-b">
             <div class="px-4 py-2 flex">

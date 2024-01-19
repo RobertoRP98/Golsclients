@@ -8,6 +8,7 @@ import SearcherController from '@/Controllers/SearcherController.js';
 import SearcherHead    from '@/Components/Dashboard/Searcher.vue';
 import Card    from '@/Components/Dashboard/Card.vue';
 import Cards    from '@/Components/Dashboard/Cards.vue';
+import ShowView        from './Show.vue';
 
 
 //este props trae la informacion de los clientes
@@ -16,9 +17,19 @@ const props = defineProps({
 });
 
 // Controladores
+const Modal    = new ModalController();
+
+// Variables de controladores
+const showModal    = ref(Modal.showModal);
+const modelModal   = ref(Modal.modelModal);
+
+// Controladores
 const Searcher = new SearcherController(goTo('index'));
 
 const query        = ref(Searcher.query);
+const pato = (ganso)=> {
+  console.log(ganso);
+}
 </script>
 
 <template>
@@ -30,12 +41,16 @@ const query        = ref(Searcher.query);
       :items="clients"
       @send-pagination="Searcher.searchWithPagination"
     >
-      <Card v-for="client in clients.data" :key="client.id" :client="client"></Card>
+      <Card v-for="client in clients.data" :key="client.id" :client="client" @open="Modal.switchShowModal(client)"></Card>
     </Cards>
-  </div>
-  
+  </div> 
 </div>
-
+        <ShowView 
+            v-if="can('index')"
+            :show="showModal" 
+            :model="modelModal" 
+            @close="Modal.switchShowModal"
+        />
     </DashboardLayout>
   </template>
   
