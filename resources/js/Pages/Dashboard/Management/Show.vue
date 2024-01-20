@@ -36,7 +36,7 @@ defineProps({
                         {{ $t('Información del plan') }}
                     </p>
                     <p>
-                        <b>{{ $t('plan') }}: {{ model.plan?.name}}  </b>
+                        <b>{{ $t('plan') }}: {{ model.plans?.name }}   </b>
                     </p>
                     <p>
                         <b>{{ $t('email') }}: </b>

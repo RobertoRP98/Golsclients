@@ -2,7 +2,7 @@
 import { goTo } from './Component';
 import { useForm } from '@inertiajs/vue3';
 import { onUpdated } from 'vue';
-
+import Selectable      from '@/Components/Dashboard/Form/Selectable.vue';
 import Input     from '@/Components/Dashboard/Form/Input.vue';
 import EditModal from '@/Components/Dashboard/Modal/Edit.vue';
 import Header    from '@/Components/Dashboard/Modal/Elements/Header.vue';
@@ -29,6 +29,8 @@ const update = (id) => {
             emit('switchModal')
         }
     });
+
+    
 }
 </script>
 <template>
@@ -62,39 +64,7 @@ const update = (id) => {
                 autofocus
                 required
             />
-            <Input
-                id="telephone_company"
-                placeholder="Telefono de la empresa"
-                class="col-span-2"
-                v-model="model.telephone_company"
-                :onError="form.errors.telephone_company"
-                autofocus
-                required
-            /><Input
-                id="contact_company"
-                placeholder="Titular o contacto de la empresa"
-                class="col-span-2"
-                v-model="model.contact_company"
-                :onError="form.errors.contact_company"
-                autofocus
-                required
-            /><Input
-                id="phone_contact"
-                placeholder="Telefono del contacto"
-                class="col-span-2"
-                v-model="model.phone_contact"
-                :onError="form.errors.phone_contact"
-                autofocus
-                required
-            /><Input
-                id="email_contact"
-                placeholder="Correo electronico del contacto"
-                class="col-span-2"
-                v-model="model.email_contact"
-                :onError="form.errors.email_contact"
-                autofocus
-                required
-            />
+            
                     </div>
                 </form>
             </div>

@@ -1,7 +1,6 @@
 <script setup>
 import { transl, can, goTo } from './Component' //goTO tiene las rutas que toman los modales
 import { ref } from 'vue';
-import { Link  } from '@inertiajs/vue3';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import ModalController    from '@/Controllers/ModalController.js';
 import SearcherController from '@/Controllers/SearcherController.js';
@@ -27,9 +26,7 @@ const modelModal   = ref(Modal.modelModal);
 const Searcher = new SearcherController(goTo('index'));
 
 const query        = ref(Searcher.query);
-const pato = (ganso)=> {
-  console.log(ganso);
-}
+
 </script>
 
 <template>
@@ -41,7 +38,7 @@ const pato = (ganso)=> {
       :items="clients"
       @send-pagination="Searcher.searchWithPagination"
     >
-      <Card v-for="client in clients.data" :key="client.id" :client="client" @open="Modal.switchShowModal(client)"></Card>
+      <Card v-for="client in clients.data" :key="client.id" :client="client" @open="Modal.switchShowModal(client.plans)"></Card>
     </Cards>
   </div> 
 </div>

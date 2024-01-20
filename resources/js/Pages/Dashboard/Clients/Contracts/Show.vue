@@ -24,7 +24,7 @@ defineProps({
         editable
     >
         <Header
-            :title="model.name"   
+            :title="model.service.name"   
         >
     
         </Header>
@@ -36,39 +36,36 @@ defineProps({
                 />
                 <div class="pl-3">
                     <p>
-                        <b>{{ $t('client') }}: </b>
-                        <a :href="`name:${model.name}`" target="_blank" class="hover:text-danger">
+                        <b>{{ $t('service') }}: </b>
+                        <a class="hover:text-danger">
+                            {{ model.service?.name }}
+                        </a>
+                    </p>
+                    <p>
+                        <b>{{ $t('plan') }}: </b>
+                        <a class="hover:text-danger">
                             {{ model.name }}
                         </a>
                     </p>
                     <p>
-                        <b>{{ $t('email') }}: </b>
-                        <a :href="`email:${model.email}`" target="_blank" class="hover:text-danger">
-                            {{ model.email }}
+                        <b>{{ $t('price') }}: </b>
+                        <a class="hover:text-danger">
+                            price
+                        </a>
+                    </p> 
+                    <p>
+                        <b>{{ $t('Fecha de contratacion') }}: </b>
+                        <a class="hover:text-danger">
+                            FECHA INICIO
                         </a>
                     </p>
                     <p>
-                        <b>{{ $t('telephone_company') }}: </b>
-                        <a :href="`telephone_company:${model.telephone_company}`" target="_blank" class="hover:text-danger">
-                            {{ model.telephone_company }}
-                        </a>
-                    </p><p>
-                        <b>{{ $t('contact_company') }}: </b>
-                        <a :href="`contact_company:${model.contact_company}`" target="_blank" class="hover:text-danger">
-                            {{ model.contact_company }}
-                        </a>
-                    </p><p>
-                        <b>{{ $t('phone_contact') }}: </b>
-                        <a :href="`phone_contact:${model.phone_contact}`" target="_blank" class="hover:text-danger">
-                            {{ model.phone_contact }}
-                        </a>
-                    </p><p>
-                        <b>{{ $t('email_contact') }}: </b>
-                        <a :href="`email_contact:${model.email_contact}`" target="_blank" class="hover:text-danger">
-                            {{ model.email_contact }}
+                        <b>{{ $t('Fecha de terminacion') }}: </b>
+                        <a class="hover:text-danger">
+                            FECHA FINAL
                         </a>
                     </p>
-
+                   
                 </div>
             </div>
         </div>
