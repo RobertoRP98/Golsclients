@@ -26,13 +26,13 @@ const emits = defineEmits([
   <template #body="{ items }">
     <!-- Mostrar botones en lugar de filas de tabla -->
     <div class="grid grid-cols-2 gap-4">
-    <template v-for="model in items.plans">
+    <template v-for="plan in items.plans">
       <button
         type="button"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded mb-2"
-        @click="emits('open')"
+        @click="emits('open', plan)"
       >
-        {{ model.service?.name }} : {{ model.name }}
+        {{ plan.service?.name }} : {{ plan.name }}
       </button>
     </template>
   </div>

@@ -28,7 +28,7 @@ class ManagementController extends VueController
     public function index()
     {
         $q = request()->get('q');
-        $clients = Client::with(['plans.service'])
+        $clients = Client::with(['plans.service', 'plans.clients'])
             ->where(function ($query) use ($q) {
                 $query->where('name', 'LIKE', "%{$q}%");
             })
@@ -37,18 +37,7 @@ class ManagementController extends VueController
         return Inertia::render('Dashboard/Management/Index', [
             'clients' => $clients
         ]);
-
-        /** 
-         *Se envia la vista del index añadiendo los planes y servicios 
-         */
-        return Inertia::render(
-            'Dashboard/Management/Index',
-            [
-                'clients' => $clients
-            ]
-        );
     }
-
     /**
      * Show the form for creating a new resource.
      *

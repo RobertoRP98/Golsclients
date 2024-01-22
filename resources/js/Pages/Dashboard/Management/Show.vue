@@ -22,7 +22,7 @@ defineProps({
         editable
     >
         <Header
-            :title="model"
+            :title="model.clients?.name"
         >
         </Header>
         <div class="py-2 border-b">
@@ -36,12 +36,12 @@ defineProps({
                         {{ $t('Información del plan') }}
                     </p>
                     <p>
-                        <b>{{ $t('plan') }}: {{ model.plans?.name }}   </b>
+                        <b>{{ $t('service') }}: {{ model.service?.name }}   </b>
                     </p>
                     <p>
-                        <b>{{ $t('email') }}: </b>
-                        <a :href="`mailto:${model.email}`" target="_blank" class="hover:text-danger">
-                            {{ model.email }}
+                        <b>{{ $t('plan') }}: </b>
+                        <a >
+                            {{ model.name }}
                         </a>
                     </p>
                 </div>

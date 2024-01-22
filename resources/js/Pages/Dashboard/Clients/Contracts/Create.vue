@@ -8,6 +8,8 @@ import GoogleIcon      from '@/Components/Shared/GoogleIcon.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { ref, watch, onMounted } from 'vue';
 import axios from 'axios';
+import Input           from '@/Components/Dashboard/Form/Input.vue';
+
 
 //este props trae la informacion de los services y plans
 const props = defineProps({
@@ -81,7 +83,7 @@ watch(service, () => {
                 autofocus
                 required></Selectable>
         </div>
-            <div class="col-span-2">
+         <div class="col-span-2">
             <Selectable 
             title="Planes"
             v-model="plan"
@@ -91,6 +93,29 @@ watch(service, () => {
                 autofocus
                 required></Selectable>
         </div>
+
+        <Input  
+                type="date"
+                id="date_start"
+                class="col-span-2"
+                v-model="form.date_start"
+                :onError="form.errors.date_start"
+                autofocus
+                required
+            />
+
+            <Input 
+                type="date"
+                id="date_end"
+                class="col-span-2"
+                v-model="form.date_end"
+                :onError="form.errors.date_end"
+                autofocus
+                required
+            />
+
+           
+        
             <div class="col-span-6 flex flex-col items-center justify-end space-y-4 mt-4">
                 <PrimaryButton
                     :class="{ 'opacity-25': form.processing }" 

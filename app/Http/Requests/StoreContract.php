@@ -37,6 +37,7 @@ class StoreContract extends FormRequest
         return [
             'service_id' => ['required', 'numeric'],
             'plan_id' => ['required', 'numeric'],
+
         ];
     }
 }

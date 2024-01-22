@@ -1,7 +1,6 @@
 <script setup>
 import { goTo, transl } from './Component';
 import { Link, useForm } from '@inertiajs/vue3';
-
 import PrimaryButton   from '@/Components/Dashboard/Button/Primary.vue';
 import Input           from '@/Components/Dashboard/Form/Input.vue';
 import PageHeader      from '@/Components/Dashboard/PageHeader.vue';

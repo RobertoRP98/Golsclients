@@ -38,7 +38,7 @@ const query        = ref(Searcher.query);
       :items="clients"
       @send-pagination="Searcher.searchWithPagination"
     >
-      <Card v-for="client in clients.data" :key="client.id" :client="client" @open="Modal.switchShowModal(client.plans)"></Card>
+      <Card v-for="client in clients.data" :key="client.id" :client="client" @open="Modal.switchShowModal"></Card>
     </Cards>
   </div> 
 </div>
