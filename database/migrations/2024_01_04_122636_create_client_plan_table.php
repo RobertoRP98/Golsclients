@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('plan_id');
             $table->date('date_start');
             $table->date('date_end');
+            $table->integer('status');
             /**Creando las referencias */
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
